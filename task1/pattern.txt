@@ -1,0 +1,4 @@
+REP_1=Donec sit amet iaculis nunc.
+REP_2=Curabitur sed ligula nulla.
+REP_3=Integer eget justo ipsum.
+REP_4=Etiam luctus et odio sed auctor.

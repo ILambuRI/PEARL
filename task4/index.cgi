@@ -2,6 +2,7 @@
 #use lib ('libs');
 use strict;
 use warnings;
+use vars qw($text2 $resFile);
 
 use CGI qw(:cgi-lib :escapeHTML :unescapeHTML);
 use Data::Dumper;
@@ -27,7 +28,7 @@ my $html = $file->readFile('doc.html');
 # my @pattern = $file->readFile('pattern.txt');
 my $doHash = $hash->makeHash();
 
-my $resFile = $parser->pars($html, $doHash);
+$resFile = $parser->pars($html, $doHash);
 
 my $text =<<HTML;
 $$resFile
@@ -35,10 +36,9 @@ HTML
 
 print "Content-type: text/html; charset=utf-8\n\n";
 
-print $text;
+#print $text;
 #print $$resFile;
 #print Dumper($resFile);
 
 require ('replace.pl');
 print $text2;
-

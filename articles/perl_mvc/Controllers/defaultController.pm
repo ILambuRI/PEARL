@@ -31,14 +31,14 @@ sub indexAction
  my ($self) = @_;
  my $art = Models::Articles->new();
  
- #%hash = $art->getAll();
+ %hash = $art->getAll();
  #%hash = $art->getByUserId(1);
- #$art->create(1, 'Title insert2', 'TXT insert2');
+ #$art->create(2, 'Title insert2', 'TXT insert2');
 
- #require "html.pl";
- #return $text2;
+ require "html.pl";
+ return $text2;
  
- # print "Content-type: text/html; charset=utf-8\n\n";
+ #print "Content-type: text/html; charset=utf-8\n\n";
  #return "Hello from default controller";
 }
 

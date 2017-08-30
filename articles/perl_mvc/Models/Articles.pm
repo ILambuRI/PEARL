@@ -11,8 +11,9 @@ sub update;
 sub delete;
 sub create;
 
-my $dbh = DBI->connect("DBI:mysql:perl:localhost", 'root', '');
-#our $dbh = DBI->connect("DBI:mysql:user10:localhost", 'user10', 'tuser10');
+#my $dbh = DBI->connect("DBI:mysql:perl:localhost", 'root', '');
+
+my $dbh = DBI->connect("DBI:mysql:user11:localhost", 'user11', 'tuser11');
 
 sub new
 {
@@ -28,7 +29,7 @@ sub getAll
     # my $dbh = DBI->connect("DBI:mysql:perl:localhost", 'root', '');
 
     # my $sth = $dbh->prepare("SELECT * FROM articles");
-    my $sth = $dbh->prepare("SELECT u.login, a.id, a.title, a.txt, a.date
+    my $sth = $dbh->prepare("SELECT u.login, a.id, a.title, a.content, a.date
                             FROM articles as a
                             JOIN users as u
                             ON u.id = a.user_id
@@ -67,7 +68,7 @@ sub getAll
 sub getByUserId
 {
     my ($self, $id) = @_;
-    my $sth = $dbh->prepare("SELECT u.login, a.id, a.title, a.txt, a.date
+    my $sth = $dbh->prepare("SELECT u.login, a.id, a.title, a.content, a.date
                             FROM articles as a
                             JOIN users as u
                             ON u.id = a.user_id
@@ -112,7 +113,7 @@ sub create
 {
     my ($self, $u_id, $title, $txt) = @_;
     my $date = time;
-    my $sql = "INSERT INTO articles (user_id, title, txt, date) 
+    my $sql = "INSERT INTO articles (user_id, title, content, date) 
               VALUES ($u_id, '$title', '$txt', $date)";
     my $sth = $dbh->do($sql);
 

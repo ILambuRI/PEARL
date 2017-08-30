@@ -4,7 +4,7 @@ $txt = '';
     {
         $txt .= '<p>Article ID:' . $_->{'id'} . ' | Login: ' . $_->{'login'} . '</p>';  
         $txt .= '<p>' . $_->{'title'} . '</p>';  
-        $txt .= '<p>' . $_->{'txt'} . '</p>';
+        $txt .= '<p>' . $_->{'content'} . '</p>';
         $txt .= '<p>' . $_->{'date'} . '</p>';
     }
 #$txt .= '</ul>';

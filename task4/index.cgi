@@ -1,4 +1,6 @@
-#!/usr/bin/perl -w
+#!C:\Dwimperl\perl\bin\perl.exe -w
+##!E:/OpenServer/modules/git/bin/perl.exe -w
+##!/usr/bin/perl -w
 #use lib ('libs');
 use strict;
 use warnings;
@@ -38,7 +40,3 @@ print "Content-type: text/html; charset=utf-8\n\n";
 print $text;
 #print $$resFile;
 #print Dumper($resFile);
-
-require ('replace.pl');
-print $text2;
-

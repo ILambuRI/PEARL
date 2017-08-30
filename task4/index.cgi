@@ -41,9 +41,6 @@ print "Content-type: text/html; charset=utf-8\n\n";
 #print $text;
 #print $$resFile;
 #print Dumper($resFile);
-<<<<<<< HEAD
-=======
 
 require ('replace.pl');
 print $text2;
->>>>>>> 45c80951e6c52614467da25fde60c9a1bc872b11

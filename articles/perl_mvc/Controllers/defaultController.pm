@@ -2,7 +2,10 @@ package Controllers::defaultController;
 
 use strict;
 use warnings;
+use Data::Dumper;
 use vars qw(%hash $text2);
+
+use Models::Articles;
 
 sub indexAction;
 
@@ -13,7 +16,8 @@ sub TIESCALAR {
   bless {}, $class;
 }
 
-
+
+
 # Reading the value of a bound variable
 sub FETCH {
   my $self = shift;
@@ -25,12 +29,16 @@ sub FETCH {
 sub indexAction
 {
  my ($self) = @_;
- %hash = ('name'=>'name',
-          '123'=>'321');
+ my $art = Models::Articles->new();
+ 
+ #%hash = $art->getAll();
+ #%hash = $art->getByUserId(1);
+ #$art->create(1, 'Title insert2', 'TXT insert2');
 
- require "html.pl";
- print "Content-type: text/html; charset=utf-8\n\n";
- return $text2;
+ #require "html.pl";
+ #return $text2;
+ 
+ # print "Content-type: text/html; charset=utf-8\n\n";
  #return "Hello from default controller";
 }
 

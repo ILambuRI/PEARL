@@ -1,3 +1,5 @@
+##!C:\Dwimperl\perl\bin\perl.exe -w
+
 #!/usr/bin/perl
 ##!"C:\xampp\perl\bin\perl.exe"
 
@@ -13,6 +15,7 @@ use CGI::Carp qw(fatalsToBrowser);
 use Libs::Request;
 use Controllers::homeController;
 use Controllers::defaultController;
+use Models::Articles;
 
 my $request = Libs::Request->new();
 my $route_str = $request->get('route','default/index');
@@ -56,9 +59,9 @@ eval
 else
 {
     print "Content-type: text/html; charset=utf-8\n\n";
-    print Dumper $content;
+    print $content;
+
     #print Dumper $text;
-    
 }
 
 #testing 

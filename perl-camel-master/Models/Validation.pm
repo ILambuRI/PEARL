@@ -132,14 +132,7 @@ sub checkRegForm
 # Processing email user form data
 sub checkUserForm
 {
-    my($self, $string) = @_;
 
-    if(!($string = $self->clearEmail($string)))
-    {
-        return 0;
-    }
-
-    return $string;
 }
 
 1;

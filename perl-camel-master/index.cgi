@@ -1,4 +1,5 @@
-#!C:\Dwimperl\perl\bin\perl.exe -w
+#!/usr/bin/perl
+##!C:\Dwimperl\perl\bin\perl.exe -w
 ##!/usr/bin/perl
 
 use strict;
@@ -8,14 +9,14 @@ use Data::Dumper;
 use File::Basename qw(dirname);
 use lib dirname(__FILE__).'/Views/';
 use lib dirname(__FILE__).'/Libs/';
-use lib dirname(__FILE__).'/Libs/CGI/Session/';
-use lib dirname(__FILE__).'/Libs/CGI/Session/ID';
-use lib dirname(__FILE__).'/Libs/CGI/Session/Serialize';
+#use lib dirname(__FILE__).'/Libs/CGI/Session/';
+#use lib dirname(__FILE__).'/Libs/CGI/Session/ID';
+#use lib dirname(__FILE__).'/Libs/CGI/Session/Serialize';
 use lib dirname(__FILE__).'/Controllers/';
 use lib dirname(__FILE__).'/Models/';
 use CGI qw(:cgi-lib :escapeHTML :unescapeHTML);
 use CGI::Carp qw(fatalsToBrowser);
-use CGI::Session qw/-ip-match/;
+use CGI::Session;
 use Libs::SessionUtil;
 
 #use CGI::Session::File;
@@ -32,31 +33,51 @@ my $sid;
 
 my $cgi = CGI->new();
 my $session;
-# $session = Libs::SessionUtil->new(1,);
-# $session->set('sessionDir', "E:/OpenServer/domains/perl-camel-master/tmp");
-# $session->set('sid', "748df09eed214eb639b2ce79266ea1ec");
+#$session = Libs::SessionUtil->new();
 # $session->sessionStarter();
+# $session->set('sessionDir', "E:/OpenServer/domains/perl-camel-master/tmp");
+# $sid = $session->getSid();
+# $session->set('sid', $sid);
+ 
 #   print "Content-type: text/html; charset=utf-8\n\n";
 #   print Dumper \$session;
-if( $sid = $cgi->cookie("CGISESSID") )
+if( $sid = $cgi->cookie("CGISESSID5") )
 {
-  #$session = CGI::Session->new(); 
-  # $session->load();
-  # my $session = new CGI::Session(undef, $sid, {Directory=>"E:/OpenServer/domains/perl-camel-master/tmp"});
-  # my $session = CGI::Session->new("driver:File", '0ee6eab8aece9396243521a5806543bc', {Directory=>"E:/OpenServer/domains/perl-camel-master/tmp"});
+    #$session = CGI::Session->new(undef, undef, undef); 
+    #$session->param('_SESSION_ID', $sid);
+    #$session->load();
+   my $session = new CGI::Session(undef, $sid,
+    {Directory=>"/usr/home/user10/public_html/PERL/perl-camel-master/tmp"});
+  # $session->param('_SESSION_ID', $sid);
+  # my $session = CGI::Session->new("driver:File", $sid,
+       #     {Directory=>"E:/OpenServer/domains/perl-camel-master/tmp"});
   # my $load = $session->load();
-  # my $id = $session->id();
-  # $session->expire(3600);
+  my $id = $session->id();
+#print "Content-type: text/html; charset=utf-8\n\n";
+  if (! ($id == $sid) )
+  {
+      my $session = new CGI::Session("driver:File", undef,
+      {Directory=>"/usr/home/user10/public_html/PERL/perl-camel-master/tmp"});
+      $sid = $session->id();
+      my $cookie = $cgi->cookie(CGISESSID5 => $sid);
+      print $cgi->header( -cookie=>$cookie );
+
+  }
+  
+  $session->expire(3600);
   print "Content-type: text/html; charset=utf-8\n\n";
-  # print Dumper \$load;
+  print Dumper \$session;
+  print Dumper \$sid;
+  print Dumper \$id;
 }
-# else
-# {
-#   my $session = new CGI::Session("driver:File", undef, {Directory=>"E:/OpenServer/domains/perl-camel-master/tmp"});
-#   $sid = $session->id();
-#   my $cookie = $cgi->cookie(CGISESSID => $sid);
-#   print $cgi->header( -cookie=>$cookie );
-# }
+ else
+ {
+   my $session = new CGI::Session("driver:File", undef,
+      {Directory=>"/usr/home/user10/public_html/PERL/perl-camel-master/tmp"});
+   $sid = $session->id();
+   my $cookie = $cgi->cookie(CGISESSID5 => $sid);
+   print $cgi->header( -cookie=>$cookie );
+ }
 
   #$session->delete();
 

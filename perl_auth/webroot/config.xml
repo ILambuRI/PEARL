@@ -1,0 +1,10 @@
+<?xml version='1.0'?>
+<configuration>
+    <dbType>mysql</dbType>    
+    <dbName>user11</dbName>
+    <dbHost>localhost</dbHost>
+    <dbUser>root</dbUser>
+    <dbPassword></dbPassword>
+    <cookieName>CamelTeam</cookieName>
+    <cookiePath>C:/xampp/htdocs/perl-camel/webroot/tmp/</cookiePath>
+</configuration>
